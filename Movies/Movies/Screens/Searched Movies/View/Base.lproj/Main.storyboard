@@ -32,7 +32,7 @@
                                             </constraints>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="Bzy-ls-kwG">
-                                            <rect key="frame" x="178" y="55" width="216" height="129"/>
+                                            <rect key="frame" x="178" y="111" width="216" height="79.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Batman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwx-5g-ScQ">
                                                     <rect key="frame" x="0.0" y="0.0" width="83" height="30"/>
@@ -40,14 +40,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evK-i3-XzX">
-                                                    <rect key="frame" x="0.0" y="59" width="135.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="zAY-8M-cUt">
-                                                    <rect key="frame" x="0.0" y="108.5" width="112.5" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="59" width="112.5" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTe-yG-dC4">
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="20.5"/>
@@ -71,13 +65,12 @@
                                         <constraint firstItem="uNe-h5-0Q3" firstAttribute="top" secondItem="BOC-nf-BQn" secondAttribute="topMargin" id="7VF-Tn-bbu"/>
                                         <constraint firstItem="uNe-h5-0Q3" firstAttribute="leading" secondItem="BOC-nf-BQn" secondAttribute="leadingMargin" id="M64-7q-Itf"/>
                                         <constraint firstItem="Bzy-ls-kwG" firstAttribute="leading" secondItem="uNe-h5-0Q3" secondAttribute="trailing" constant="8" id="Mqe-MR-LZU"/>
-                                        <constraint firstItem="Bzy-ls-kwG" firstAttribute="top" secondItem="BOC-nf-BQn" secondAttribute="topMargin" constant="44" id="cPT-3b-uiT"/>
+                                        <constraint firstItem="Bzy-ls-kwG" firstAttribute="top" secondItem="BOC-nf-BQn" secondAttribute="topMargin" constant="100" id="cPT-3b-uiT"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="uNe-h5-0Q3" secondAttribute="bottom" id="irW-jj-1tA"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <connections>
-                                    <outlet property="movieGenre" destination="evK-i3-XzX" id="Ofg-z0-ANz"/>
                                     <outlet property="movieLabel" destination="pwx-5g-ScQ" id="hID-C5-k2J"/>
                                     <outlet property="moviePoster" destination="uNe-h5-0Q3" id="nn4-Ee-Be3"/>
                                     <outlet property="movieType" destination="tTe-yG-dC4" id="0d1-MN-Ypd"/>

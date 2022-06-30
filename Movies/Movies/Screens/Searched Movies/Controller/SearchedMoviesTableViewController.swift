@@ -12,7 +12,9 @@ class SearchedMoviesTableViewController: UITableViewController, UISearchResultsU
 
     private var response: SearchResult? {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -79,13 +81,30 @@ class SearchedMoviesTableViewController: UITableViewController, UISearchResultsU
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
        let movie = response?.movies?[indexPath.row]
        let cell = tableView.dequeueReusableCell(withIdentifier: "movie", for: indexPath) as! MovieTableViewCell
         
+        if let url = movie?.poster {
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request){ data, response, error in
+                if let error = error {
+                    debugPrint(error)
+                    return
+                }
+                if let data = data {
+                    DispatchQueue.main.async {
+                        cell.moviePoster.image = UIImage(data: data)
+                    }
+                }
+            }.resume()
+        }
+       
+        
         cell.moviePoster.backgroundColor = .darkGray
         cell.movieLabel.text = movie?.title
-        cell.movieYear.text = "2020"
-        cell.movieType.text = "Series"
+        cell.movieYear.text = movie?.year
+        cell.movieType.text = movie?.type?.rawValue
         
         return cell
     }
