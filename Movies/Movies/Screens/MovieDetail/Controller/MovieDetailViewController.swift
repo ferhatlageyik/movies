@@ -23,6 +23,10 @@ class MovieDetailViewController: UIViewController {
         moviePlot.text = "A poor village under attack by bandits recruits seven unemployed samurai to help them defend themselves Language Japanese Country Japan Awards Nominated for 2 Oscars. 5 wins & 8 nominations total"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
 
     
 

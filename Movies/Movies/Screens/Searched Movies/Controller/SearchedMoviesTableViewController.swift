@@ -53,8 +53,8 @@ class SearchedMoviesTableViewController: UITableViewController, UISearchResultsU
         }.resume()
     }
     
-    private func fetchMovieDetails(with movieName: String) {
-        guard let url = URL(string: "https://www.omdbapi.com/?&apikey=9ca250e0&t=\(movieName)") else { return }
+    private func fetchMovieDetails(with movieId: String) {
+        guard let url = URL(string: "https://www.omdbapi.com/?&apikey=9ca250e0&i=\(movieId)") else { return }
     
         let request = URLRequest(url: url)
         
@@ -68,6 +68,24 @@ class SearchedMoviesTableViewController: UITableViewController, UISearchResultsU
             }
 
         }.resume()
+    }
+    
+    private func fetchImage(with url: URL?, completion: @escaping (Data) -> Void ){
+        
+        if let url = url {
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request){ data, response, error in
+                if let error = error {
+                    debugPrint(error)
+                    return
+                }
+                if let data = data {
+                    DispatchQueue.main.async {
+                        completion(data)
+                    }
+                }
+            }.resume()
+        }
     }
   
     
@@ -85,23 +103,11 @@ class SearchedMoviesTableViewController: UITableViewController, UISearchResultsU
        let movie = response?.movies?[indexPath.row]
        let cell = tableView.dequeueReusableCell(withIdentifier: "movie", for: indexPath) as! MovieTableViewCell
         
-        if let url = movie?.poster {
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request){ data, response, error in
-                if let error = error {
-                    debugPrint(error)
-                    return
-                }
-                if let data = data {
-                    DispatchQueue.main.async {
-                        cell.moviePoster.image = UIImage(data: data)
-                    }
-                }
-            }.resume()
-        }
-       
-        
         cell.moviePoster.backgroundColor = .darkGray
+        fetchImage(with: movie?.poster) { data in
+            cell.moviePoster.image = UIImage(data: data)
+        }
+        
         cell.movieLabel.text = movie?.title
         cell.movieYear.text = movie?.year
         cell.movieType.text = movie?.type?.rawValue
