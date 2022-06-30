@@ -31,17 +31,23 @@
                                                 <constraint firstAttribute="width" constant="150" id="okd-fr-Ncp"/>
                                             </constraints>
                                         </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="Bzy-ls-kwG">
-                                            <rect key="frame" x="178" y="111" width="216" height="79.5"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Bzy-ls-kwG">
+                                            <rect key="frame" x="178" y="21" width="216" height="110"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Batman" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwx-5g-ScQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="83" height="30"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="23"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action, Adventure" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AMc-Eo-jvf">
+                                                    <rect key="frame" x="0.0" y="46" width="135.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="zAY-8M-cUt">
-                                                    <rect key="frame" x="0.0" y="59" width="112.5" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="89.5" width="112.5" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTe-yG-dC4">
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="20.5"/>
@@ -59,19 +65,33 @@
                                                 </stackView>
                                             </subviews>
                                         </stackView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="CZT-fK-7Wx">
+                                            <rect key="frame" x="178" y="145" width="216" height="99"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="CZT-fK-7Wx" firstAttribute="leading" secondItem="uNe-h5-0Q3" secondAttribute="trailing" constant="8" id="06C-Fb-KWm"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Bzy-ls-kwG" secondAttribute="trailing" id="0Ep-Nb-xZ7"/>
                                         <constraint firstItem="uNe-h5-0Q3" firstAttribute="top" secondItem="BOC-nf-BQn" secondAttribute="topMargin" id="7VF-Tn-bbu"/>
+                                        <constraint firstItem="CZT-fK-7Wx" firstAttribute="top" secondItem="Bzy-ls-kwG" secondAttribute="bottom" constant="14" id="B0m-Lt-oHC"/>
                                         <constraint firstItem="uNe-h5-0Q3" firstAttribute="leading" secondItem="BOC-nf-BQn" secondAttribute="leadingMargin" id="M64-7q-Itf"/>
                                         <constraint firstItem="Bzy-ls-kwG" firstAttribute="leading" secondItem="uNe-h5-0Q3" secondAttribute="trailing" constant="8" id="Mqe-MR-LZU"/>
-                                        <constraint firstItem="Bzy-ls-kwG" firstAttribute="top" secondItem="BOC-nf-BQn" secondAttribute="topMargin" constant="100" id="cPT-3b-uiT"/>
+                                        <constraint firstItem="CZT-fK-7Wx" firstAttribute="bottom" secondItem="BOC-nf-BQn" secondAttribute="bottomMargin" id="YpT-d2-JYj"/>
+                                        <constraint firstItem="Bzy-ls-kwG" firstAttribute="top" secondItem="BOC-nf-BQn" secondAttribute="topMargin" constant="10" id="cPT-3b-uiT"/>
+                                        <constraint firstItem="CZT-fK-7Wx" firstAttribute="trailing" secondItem="BOC-nf-BQn" secondAttribute="trailingMargin" id="d2l-xA-tkf"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="uNe-h5-0Q3" secondAttribute="bottom" id="irW-jj-1tA"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="1" height="0.0"/>
                                 <connections>
+                                    <outlet property="movieGenre" destination="AMc-Eo-jvf" id="jaI-03-juS"/>
                                     <outlet property="movieLabel" destination="pwx-5g-ScQ" id="hID-C5-k2J"/>
+                                    <outlet property="moviePlot" destination="CZT-fK-7Wx" id="pIi-fo-o88"/>
                                     <outlet property="moviePoster" destination="uNe-h5-0Q3" id="nn4-Ee-Be3"/>
                                     <outlet property="movieType" destination="tTe-yG-dC4" id="0d1-MN-Ypd"/>
                                     <outlet property="movieYear" destination="9Zj-Xu-xVT" id="Xpr-rn-Lhd"/>
@@ -90,7 +110,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Si-bm-MTL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="755" y="98"/>
+            <point key="canvasLocation" x="753.62318840579712" y="97.767857142857139"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="Zga-Uf-etz">

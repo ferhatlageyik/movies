@@ -17,6 +17,7 @@
 		E442E024286D97C7008524DF /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442E023286D97C7008524DF /* MovieTableViewCell.swift */; };
 		E442E027286DA860008524DF /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442E026286DA860008524DF /* MovieDetailViewController.swift */; };
 		E442E033286DBDEF008524DF /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442E032286DBDEF008524DF /* MovieDetail.swift */; };
+		E442E038286DE3FD008524DF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E442E037286DE3FD008524DF /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		E442E023286D97C7008524DF /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		E442E026286DA860008524DF /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		E442E032286DBDEF008524DF /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
+		E442E037286DE3FD008524DF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,24 +69,23 @@
 				E442E01F286D91E0008524DF /* App */,
 				E442E020286D91EE008524DF /* Screens */,
 				E442E021286D9200008524DF /* Supporting Files */,
-				E442E01E286D905B008524DF /* Models */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
 		};
-		E442E01E286D905B008524DF /* Models */ = {
+		E442E01E286D905B008524DF /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				E442E01C286D9056008524DF /* SearchResult.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E442E01F286D91E0008524DF /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E442E008286D8E9B008524DF /* AppDelegate.swift */,
-				E442E00A286D8E9B008524DF /* SceneDelegate.swift */,
+				E442E035286DE3E1008524DF /* Core */,
+				E442E034286DE3D5008524DF /* Delegate */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -92,8 +93,8 @@
 		E442E020286D91EE008524DF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				E442E025286DA82E008524DF /* MovieDetail */,
 				E442E022286D9260008524DF /* Searched Movies */,
+				E442E025286DA82E008524DF /* MovieDetail */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -111,6 +112,7 @@
 		E442E022286D9260008524DF /* Searched Movies */ = {
 			isa = PBXGroup;
 			children = (
+				E442E01E286D905B008524DF /* Model */,
 				E442E029286DA884008524DF /* View */,
 				E442E028286DA875008524DF /* Controller */,
 			);
@@ -165,6 +167,31 @@
 				E442E032286DBDEF008524DF /* MovieDetail.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E442E034286DE3D5008524DF /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				E442E008286D8E9B008524DF /* AppDelegate.swift */,
+				E442E00A286D8E9B008524DF /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		E442E035286DE3E1008524DF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E442E036286DE3E9008524DF /* Network */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E442E036286DE3E9008524DF /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				E442E037286DE3FD008524DF /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +269,7 @@
 				E442E033286DBDEF008524DF /* MovieDetail.swift in Sources */,
 				E442E00D286D8E9B008524DF /* SearchedMoviesTableViewController.swift in Sources */,
 				E442E009286D8E9B008524DF /* AppDelegate.swift in Sources */,
+				E442E038286DE3FD008524DF /* NetworkManager.swift in Sources */,
 				E442E01D286D9056008524DF /* SearchResult.swift in Sources */,
 				E442E027286DA860008524DF /* MovieDetailViewController.swift in Sources */,
 				E442E00B286D8E9B008524DF /* SceneDelegate.swift in Sources */,

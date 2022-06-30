@@ -8,7 +8,12 @@
 import UIKit
 
 class MovieDetailViewController: UIViewController {
-
+    
+    var selectedMoviesImdbId: String?
+    var poster: URL?
+    var selectedMovie: MovieDetail?
+    let networkManager = NetworkManager()
+    
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var movieGenre: UILabel!
     @IBOutlet weak var moviePlot: UITextView!
@@ -16,18 +21,31 @@ class MovieDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        title = "movie Detail"
-        moviePoster.backgroundColor = .gray
-        movieGenre.text = "Drama"
-        moviePlot.text = "A poor village under attack by bandits recruits seven unemployed samurai to help them defend themselves Language Japanese Country Japan Awards Nominated for 2 Oscars. 5 wins & 8 nominations total"
+        getMovieDetails(imdb: selectedMoviesImdbId ?? "")
+        if let url = poster {
+            getMovieImage(with: url)
+            
+        }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    private func getMovieDetails(imdb: String) {
+        NetworkManager.shared.fetchMovieDetails(with: self.selectedMoviesImdbId ?? "") { response in
+            DispatchQueue.main.async {
+                self.movieGenre.text = response.genre
+                self.moviePlot.text = response.plot
+            }
+            
+        }
         
     }
     
-
+    private func getMovieImage(with poster: URL) {
+        NetworkManager.shared.fetchImage(with: poster) { data in
+            DispatchQueue.main.async {
+                self.moviePoster.image = UIImage(data: data)
+            }
+            
+        }
+    }
     
-
 }

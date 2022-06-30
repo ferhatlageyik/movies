@@ -9,7 +9,7 @@ import UIKit
 
 class SearchedMoviesTableViewController: UITableViewController, UISearchResultsUpdating {
     
-
+    //MARK: - Properties
     private var response: SearchResult? {
         didSet {
             DispatchQueue.main.async {
@@ -19,75 +19,15 @@ class SearchedMoviesTableViewController: UITableViewController, UISearchResultsU
     }
     
     private var movieDetail: MovieDetail?
-
+    var selectedMoviesImdbId: String?
+    var poster: URL?
+    
+    
+    //MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSearchController()
-        fetchMovieResults(with: "batman")
-        
     }
-    
-    
-    private func setupSearchController() {
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Type something here to search"
-        navigationItem.searchController = search
-    }
-    
-    private func fetchMovieResults(with text: String) {
-        guard let url = URL(string: "https://www.omdbapi.com/?&apikey=9ca250e0&s=\(text)") else { return }
-    
-        let request = URLRequest(url: url)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                debugPrint(error)
-            }
-            
-            if let data = data, let response = try? JSONDecoder().decode(SearchResult.self, from: data) {
-                self.response = response
-            }
-
-        }.resume()
-    }
-    
-    private func fetchMovieDetails(with movieId: String) {
-        guard let url = URL(string: "https://www.omdbapi.com/?&apikey=9ca250e0&i=\(movieId)") else { return }
-    
-        let request = URLRequest(url: url)
-        
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                debugPrint(error)
-            }
-            
-            if let data = data, let response = try? JSONDecoder().decode(MovieDetail.self, from: data) {
-                self.movieDetail = response
-            }
-
-        }.resume()
-    }
-    
-    private func fetchImage(with url: URL?, completion: @escaping (Data) -> Void ){
-        
-        if let url = url {
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request){ data, response, error in
-                if let error = error {
-                    debugPrint(error)
-                    return
-                }
-                if let data = data {
-                    DispatchQueue.main.async {
-                        completion(data)
-                    }
-                }
-            }.resume()
-        }
-    }
-  
     
     //MARK: - UITableViewDataSource & UITableViewDelegate
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,42 +40,71 @@ class SearchedMoviesTableViewController: UITableViewController, UISearchResultsU
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       let movie = response?.movies?[indexPath.row]
-       let cell = tableView.dequeueReusableCell(withIdentifier: "movie", for: indexPath) as! MovieTableViewCell
+        let movie = response?.movies?[indexPath.row]
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "movie", for: indexPath) as! MovieTableViewCell
+        
+        if let imdbId = movie?.imdbID {
+            getMoviesDetails(with: imdbId)
+            cell.movieGenre.text = movieDetail?.genre
+            cell.moviePlot.text = movieDetail?.plot
+        }
         
         cell.moviePoster.backgroundColor = .darkGray
-        fetchImage(with: movie?.poster) { data in
+        NetworkManager.shared.fetchImage(with: movie?.poster) { data in
             cell.moviePoster.image = UIImage(data: data)
         }
         
         cell.movieLabel.text = movie?.title
         cell.movieYear.text = movie?.year
         cell.movieType.text = movie?.type?.rawValue
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedMoviesImdbId = response?.movies?[indexPath.row].imdbID
+        poster = response?.movies?[indexPath.row].poster
         performSegue(withIdentifier: "movieDetailSegue", sender: nil)
+        
     }
     
-    
+    //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let viewController = segue.destination as? MovieDetailViewController {
-            
+            viewController.selectedMoviesImdbId = selectedMoviesImdbId
+            viewController.poster = poster
         }
     }
     
     //MARK: - UISearchResultsUpdating
     func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
         
+        guard let text = searchController.searchBar.text else { return }
         if text.count > 2 {
-           fetchMovieResults(with: text)
+            getSearchResults(with: text)
         }
         
     }
     
-
+    //MARK: - Functions
+    
+    private func setupSearchController() {
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Type something here to search"
+        navigationItem.searchController = search
+    }
+    
+    private func getMoviesDetails(with imdbId: String) {
+        NetworkManager.shared.fetchMovieDetails(with: imdbId) { response in
+            self.movieDetail = response
+        }
+    }
+    
+    private func getSearchResults(with text: String) {
+        NetworkManager.shared.fetchMovieResults(with: text) { response in
+            self.response = response
+        }
+    }
 }

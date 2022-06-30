@@ -14,7 +14,7 @@ struct MovieDetail: Codable {
     let runtime, genre, director, writer: String?
     let actors, plot, language, country: String?
     let awards: String?
-    let poster: String?
+    let poster: URL?
     let ratings: [Rating]?
     let metascore, imdbRating, imdbVotes, imdbID: String?
     let type, dvd, boxOffice, production: String?
