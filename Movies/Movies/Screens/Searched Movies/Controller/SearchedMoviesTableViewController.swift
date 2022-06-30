@@ -7,13 +7,20 @@
 
 import UIKit
 
-class SearchedMoviesTableViewController: UITableViewController {
+class SearchedMoviesTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Type something here to search"
+        navigationItem.searchController = search
     }
     
+    //MARK: - UITableViewDataSource & UITableViewDelegate
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -35,9 +42,29 @@ class SearchedMoviesTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "movieDetailSegue", sender: nil)
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let viewController = segue.destination as? MovieDetailViewController {
+            
+        }
+    }
+    
+    //MARK: - UISearchResultsUpdating
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        
+        if text.count > 2 {
+           print(text)
+        }
         
     }
-
-
+    
+    
+    
+    
 }
 
