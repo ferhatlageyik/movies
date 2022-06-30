@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - SearchResult
 struct SearchResult: Codable {
-    let movies: [Movie]
-    let totalResults, response: String
+    let movies: [Movie]?
+    let totalResults, response: String?
 
     enum CodingKeys: String, CodingKey {
         case movies = "Search"
@@ -21,9 +21,9 @@ struct SearchResult: Codable {
 
 // MARK: - Movie
 struct Movie: Codable {
-    let title, year, imdbID: String
-    let type: TypeEnum
-    let poster: String
+    let title, year, imdbID: String?
+    let type: TypeEnum?
+    let poster: String?
 
     enum CodingKeys: String, CodingKey {
         case title = "Title"
