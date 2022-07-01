@@ -103,7 +103,13 @@
                             <outlet property="delegate" destination="dhq-cl-AZg" id="swc-d0-lft"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Movies" id="6Pe-hv-VOG"/>
+                    <navigationItem key="navigationItem" title="Movies" id="6Pe-hv-VOG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="gPa-bh-UK3">
+                            <connections>
+                                <action selector="searchButtonTapped:" destination="dhq-cl-AZg" id="xGb-XX-pLH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="LCb-5R-I6N" kind="show" identifier="movieDetailSegue" id="EsN-FU-FUb"/>
                     </connections>
@@ -133,12 +139,33 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relased Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XhQ-hY-qA6">
+                                <rect key="frame" x="20" y="604" width="110" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="125 min" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IX1-dl-0M3">
+                                <rect key="frame" x="150" y="604" width="62.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Directed by " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mhg-aS-1iQ">
+                                <rect key="frame" x="20" y="633" width="96" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rax-bu-7sN">
+                                <rect key="frame" x="20" y="662" width="52.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yt1-0p-zIW">
-                                <rect key="frame" x="20" y="606" width="374" height="200"/>
+                                <rect key="frame" x="20" y="691" width="374" height="179"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="nqi-KJ-oDE"/>
-                                </constraints>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -148,21 +175,34 @@
                         <viewLayoutGuide key="safeArea" id="ECP-kY-xRn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="yt1-0p-zIW" firstAttribute="leading" secondItem="ECP-kY-xRn" secondAttribute="leading" constant="20" id="79O-Pv-GuS"/>
                             <constraint firstItem="6h4-DL-9Oc" firstAttribute="top" secondItem="ECP-kY-xRn" secondAttribute="top" id="7rX-hq-IeD"/>
+                            <constraint firstAttribute="bottom" secondItem="yt1-0p-zIW" secondAttribute="bottom" constant="26" id="9F2-tP-qEy"/>
                             <constraint firstItem="ECP-kY-xRn" firstAttribute="trailing" secondItem="qZ2-U2-qAg" secondAttribute="trailing" constant="20" id="By9-Lp-Js3"/>
-                            <constraint firstItem="ECP-kY-xRn" firstAttribute="trailing" secondItem="yt1-0p-zIW" secondAttribute="trailing" constant="20" id="L2u-4O-XdO"/>
-                            <constraint firstItem="yt1-0p-zIW" firstAttribute="top" secondItem="qZ2-U2-qAg" secondAttribute="bottom" constant="20" id="YQq-EC-Btw"/>
+                            <constraint firstItem="mhg-aS-1iQ" firstAttribute="top" secondItem="XhQ-hY-qA6" secondAttribute="bottom" constant="8" id="DNr-Tz-1VI"/>
+                            <constraint firstItem="yt1-0p-zIW" firstAttribute="top" secondItem="rax-bu-7sN" secondAttribute="bottom" constant="8" id="HCj-mw-Lhh"/>
+                            <constraint firstItem="XhQ-hY-qA6" firstAttribute="top" secondItem="qZ2-U2-qAg" secondAttribute="bottom" constant="18" id="JSu-nq-s0W"/>
+                            <constraint firstItem="yt1-0p-zIW" firstAttribute="leading" secondItem="ECP-kY-xRn" secondAttribute="leading" constant="20" id="KQw-J4-QVL"/>
+                            <constraint firstItem="IX1-dl-0M3" firstAttribute="leading" secondItem="XhQ-hY-qA6" secondAttribute="trailing" constant="20" id="Vbc-g8-5EY"/>
+                            <constraint firstItem="ECP-kY-xRn" firstAttribute="trailing" secondItem="yt1-0p-zIW" secondAttribute="trailing" constant="20" id="au3-lz-Fm9"/>
+                            <constraint firstItem="mhg-aS-1iQ" firstAttribute="leading" secondItem="ECP-kY-xRn" secondAttribute="leading" constant="20" id="au5-jh-rCC"/>
                             <constraint firstItem="qZ2-U2-qAg" firstAttribute="top" secondItem="6h4-DL-9Oc" secondAttribute="bottom" constant="24" id="cmu-tT-i4w"/>
+                            <constraint firstItem="XhQ-hY-qA6" firstAttribute="leading" secondItem="ECP-kY-xRn" secondAttribute="leading" constant="20" id="die-1O-upx"/>
                             <constraint firstItem="qZ2-U2-qAg" firstAttribute="leading" secondItem="ECP-kY-xRn" secondAttribute="leading" constant="20" id="f0q-1w-w0G"/>
                             <constraint firstItem="6h4-DL-9Oc" firstAttribute="centerX" secondItem="ypS-ye-SJ6" secondAttribute="centerX" id="gFm-2f-Oaw"/>
+                            <constraint firstItem="rax-bu-7sN" firstAttribute="leading" secondItem="ECP-kY-xRn" secondAttribute="leading" constant="20" id="q2o-cZ-nVq"/>
+                            <constraint firstItem="rax-bu-7sN" firstAttribute="top" secondItem="mhg-aS-1iQ" secondAttribute="bottom" constant="8" id="rkC-zx-g4P"/>
+                            <constraint firstItem="IX1-dl-0M3" firstAttribute="top" secondItem="qZ2-U2-qAg" secondAttribute="bottom" constant="18" id="vKs-jG-L1Z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fw4-B6-Bdp"/>
                     <connections>
+                        <outlet property="actorsNames" destination="rax-bu-7sN" id="oFP-II-FEX"/>
+                        <outlet property="directorName" destination="mhg-aS-1iQ" id="xnz-YF-A7Q"/>
+                        <outlet property="duration" destination="IX1-dl-0M3" id="nYe-vV-ZN6"/>
                         <outlet property="movieGenre" destination="qZ2-U2-qAg" id="RsZ-3f-oGZ"/>
                         <outlet property="moviePlot" destination="yt1-0p-zIW" id="erf-LJ-xMB"/>
                         <outlet property="moviePoster" destination="6h4-DL-9Oc" id="I2m-2L-FAK"/>
+                        <outlet property="relasedYear" destination="XhQ-hY-qA6" id="xeF-bN-24R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bt-hp-XPq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

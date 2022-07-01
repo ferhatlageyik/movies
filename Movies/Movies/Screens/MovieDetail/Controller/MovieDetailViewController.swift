@@ -16,36 +16,38 @@ class MovieDetailViewController: UIViewController {
     
     @IBOutlet weak var moviePoster: UIImageView!
     @IBOutlet weak var movieGenre: UILabel!
+    @IBOutlet weak var relasedYear: UILabel!
+    @IBOutlet weak var directorName: UILabel!
+    @IBOutlet weak var duration: UILabel!
+    @IBOutlet weak var actorsNames: UILabel!
     @IBOutlet weak var moviePlot: UITextView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMovieDetails(imdb: selectedMoviesImdbId ?? "")
+        getMovieDetails(imdbId: selectedMoviesImdbId ?? "")
         if let url = poster {
             getMovieImage(with: url)
-            
         }
     }
     
-    private func getMovieDetails(imdb: String) {
-        NetworkManager.shared.fetchMovieDetails(with: self.selectedMoviesImdbId ?? "") { response in
-            DispatchQueue.main.async {
-                self.movieGenre.text = response.genre
-                self.moviePlot.text = response.plot
-            }
-            
-        }
+    private func getMovieDetails(imdbId: String) {
         
+        NetworkManager.shared.fetchMovieDetails(with: selectedMoviesImdbId ?? "") { [self] response in
+            DispatchQueue.main.async { [self] in
+                movieGenre.text = response.genre
+                relasedYear.text = "Relased Date: \(response.released ?? "")"
+                duration.text = response.runtime
+                directorName.text = "Directed by: \(response.director ?? "")"
+                actorsNames.text = response.actors
+                moviePlot.text = response.plot
+            }
+        }
     }
     
     private func getMovieImage(with poster: URL) {
         NetworkManager.shared.fetchImage(with: poster) { data in
-            DispatchQueue.main.async {
-                self.moviePoster.image = UIImage(data: data)
-            }
-            
+            self.moviePoster.image = UIImage(data: data)
         }
     }
-    
 }
